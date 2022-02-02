@@ -1,14 +1,15 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-
 import Home from './screens/Home';
 import Rankings from './screens/Rankings';
 import Catalogue from './screens/Catalogue';
 import Settings from './screens/Settings';
 import Games from './screens/Games';
 import {Theme, Colors} from './theme';
+import {useAppContext} from './context';
+import useDataClient from './hooks/useDataClient';
+import MaterialIcon from './components/MaterialIcon';
 
 export type RootStackParamList = {
   Dashboard: undefined;
@@ -31,7 +32,7 @@ const getTabIcon = (route: string, color: string) => {
     Rankings: 'signal-cellular-alt',
     Settings: 'settings',
   };
-  return <Icon name={iconMap[route.name]} color={color} size={30} />;
+  return <MaterialIcon name={iconMap[route]} color={color} size={30} />;
 };
 
 const HomeTabs = () => {
@@ -49,7 +50,7 @@ const HomeTabs = () => {
         },
       }}
       screenOptions={({route}) => ({
-        tabBarIcon: ({color}) => getTabIcon(route, color),
+        tabBarIcon: ({color}) => getTabIcon(route.name, color),
       })}>
       <Tab.Screen name="Rankings" component={Rankings} />
       <Tab.Screen name="Home" component={Home} options={{headerShown: false}} />
@@ -59,6 +60,22 @@ const HomeTabs = () => {
 };
 
 const App = () => {
+  const {setTotalPoints, user} = useAppContext();
+  const {getUserPoints} = useDataClient();
+
+  React.useEffect(() => {
+    async function fetchData() {
+      if (user) {
+        const points = await getUserPoints(user.id);
+        if (typeof points === 'number') {
+          setTotalPoints(points);
+        }
+      }
+    }
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+
   return (
     <Stack.Navigator>
       <Stack.Screen

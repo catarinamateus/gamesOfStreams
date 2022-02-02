@@ -7,12 +7,16 @@ import styles from './styles';
 import {game_one} from '../../data/games/questions';
 
 import {Theme} from '../../theme';
+import {useAppContext} from '../../context';
 
 const Games = (): JSX.Element => {
   const [startCount, setStartCount] = React.useState<number>(5);
   const [counter, setCounter] = React.useState<number>(30);
   const [questionsAnswered, setQuestionsAnswered] = React.useState<number>(0);
   const [correctAnswers, setCorrectAnswers] = React.useState<number>(0);
+  const {setTotalPoints, totalPoints} = useAppContext();
+
+  const pointsToWin = 100;
 
   const totalQuestions = game_one.length;
   const currentRound =
@@ -55,6 +59,13 @@ const Games = (): JSX.Element => {
     }
   }, [startCount]);
 
+  React.useEffect(() => {
+    if (correctAnswers === totalQuestions) {
+      setTotalPoints(totalPoints + pointsToWin);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [correctAnswers, totalPoints, totalQuestions]);
+
   const onNextQuestion = () => {
     setQuestionsAnswered(number => {
       const updatedCounter = number + 1;
@@ -63,14 +74,11 @@ const Games = (): JSX.Element => {
   };
 
   const onOptionPress = (index: number) => {
-    console.log('index', index, currentCorrectAnswer);
     if (index + 1 === currentCorrectAnswer) {
       setCorrectAnswers(count => count + 1);
     }
     onNextQuestion();
   };
-
-  console.log('correct answer', correctAnswers);
 
   const renderCountDown = (): JSX.Element => {
     return (
@@ -104,7 +112,7 @@ const Games = (): JSX.Element => {
     if (correctAnswers === totalQuestions) {
       return (
         <Text style={styles.questionText}>
-          Congratulations! You won 100 points!
+          Congratulations! You won {pointsToWin} points!
         </Text>
       );
     } else {

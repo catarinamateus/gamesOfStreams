@@ -8,12 +8,13 @@ export enum UserLevelEnum {
 export interface UserType {
   id: string;
   name: string;
-  totalPoint: number;
   level: UserLevelEnum;
 }
 
 export interface AppContextType {
   user?: UserType;
+  totalPoints: number;
   login: (user: UserType) => void;
   logout: () => void;
+  setTotalPoints: (total: number) => void;
 }

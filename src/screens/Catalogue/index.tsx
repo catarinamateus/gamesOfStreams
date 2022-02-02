@@ -8,12 +8,14 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
+import {useAppContext} from '../../context';
 
 import {catalogueStyles} from './styles';
 import {CatalogueOption, catalogueOptions} from './utils';
 
 const Home = () => {
   const styles = catalogueStyles();
+  const {totalPoints} = useAppContext();
 
   /*
     TODO:
@@ -24,7 +26,7 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle={'light-content'} />
-      <Text style={styles.balanceText}>{`Your 🪙 balance: `}</Text>
+      <Text style={styles.balanceText}>{`Your ${totalPoints} balance: `}</Text>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={styles.backgroundStyle}>

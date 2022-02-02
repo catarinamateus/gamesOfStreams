@@ -19,7 +19,7 @@ import {HomeStyles} from './styles/index';
 const Home = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const styles = HomeStyles();
-  const {user} = useAppContext();
+  const {user, totalPoints} = useAppContext();
 
   return (
     <>
@@ -32,7 +32,7 @@ const Home = () => {
 
         <View style={styles.avatarInfoContainer}>
           <Text style={styles.avatarName}>{user?.name}</Text>
-          <Text style={styles.avatarPoints}>{user?.totalPoint} points</Text>
+          <Text style={styles.avatarPoints}>{totalPoints} points</Text>
         </View>
 
         <View style={styles.sectionContainer}>
