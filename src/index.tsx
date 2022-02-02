@@ -1,9 +1,11 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Home from './screens/Home';
+import Rankings from './screens/Rankings';
 import Catalogue from './screens/Catalogue';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Settings from './screens/Settings';
 import Games from './screens/Games';
 import {Theme} from './theme';
 
@@ -19,9 +21,9 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const HomeTabs = () => {
   return (
     <Tab.Navigator initialRouteName="Home">
-      <Tab.Screen name="Rankings" component={Home} />
+      <Tab.Screen name="Rankings" component={Rankings} />
       <Tab.Screen name="Home" component={Home} options={{headerShown: false}} />
-      <Tab.Screen name="Settings" component={Home} />
+      <Tab.Screen name="Settings" component={Settings} />
     </Tab.Navigator>
   );
 };

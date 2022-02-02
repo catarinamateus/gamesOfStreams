@@ -1,40 +1,73 @@
 import React from 'react';
 import {
-  Button,
-  SafeAreaView,
+  Image,
   ScrollView,
+  Text,
+  View,
+  TouchableHighlight,
   StatusBar,
-  useColorScheme,
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import {useNavigation} from '@react-navigation/core';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {useNavigation} from '@react-navigation/native';
 import {RootStackParamList} from '../..';
+import lastWatchedData from '../../../lastWatchedData.json';
+import {useAppContext} from '../../context';
 import {StackNavigationProp} from '@react-navigation/stack';
-
-type homeScreenProp = StackNavigationProp<RootStackParamList, 'Dashboard'>;
+import {HomeStyles} from './styles/index';
 
 const Home = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-  const navigation = useNavigation<homeScreenProp>();
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+  const styles = HomeStyles();
+  const {user} = useAppContext();
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Button
-          // temporary for navigation into catalogue. To remove once real design is done
-          title="Catalogue"
-          onPress={() => navigation.navigate('Game')}
+    <>
+      <StatusBar barStyle={'light-content'} />
+      <View style={styles.container}>
+        <Image
+          style={styles.avatarImage}
+          source={require('../../assets/images/mainAvatar.png')}
         />
-      </ScrollView>
-    </SafeAreaView>
+
+        <View style={styles.avatarInfoContainer}>
+          <Text style={styles.avatarName}>{user?.name}</Text>
+          <Text style={styles.avatarPoints}>{user?.totalPoint} points</Text>
+        </View>
+
+        <View style={styles.sectionContainer}>
+          <Text style={styles.sectionTitle}>
+            Click in one of the last watched to start game
+          </Text>
+          <ScrollView horizontal>
+            {lastWatchedData.map((film, index) => (
+              <TouchableHighlight
+                key={index}
+                style={styles.imageContainer}
+                onPress={() => navigation.navigate('Game')}>
+                <Image
+                  source={{
+                    uri: film.image,
+                  }}
+                  style={styles.imageContainer}
+                />
+              </TouchableHighlight>
+            ))}
+          </ScrollView>
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <TouchableHighlight
+            onPress={() => navigation.navigate('Catalogue')}
+            style={styles.button}>
+            <LinearGradient
+              colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.7)']}
+              style={styles.buttonLinear}>
+              <Text style={styles.sectionTitle}>Catalogue</Text>
+            </LinearGradient>
+          </TouchableHighlight>
+        </View>
+      </View>
+    </>
   );
 };
 
