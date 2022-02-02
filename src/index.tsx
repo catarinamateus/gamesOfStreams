@@ -7,7 +7,7 @@ import Catalogue from './screens/Catalogue';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 export type RootStackParamList = {
-  Home: undefined;
+  Dashboard: undefined;
   Catalogue: undefined;
 };
 
@@ -28,11 +28,19 @@ const App = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Home"
+        name="Dashboard"
         component={HomeTabs}
         options={{headerShown: false}}
       />
-      <Stack.Screen name="Catalogue" component={Catalogue} />
+      <Stack.Screen
+        name="Catalogue"
+        component={Catalogue}
+        options={{
+          headerStyle: {backgroundColor: 'rgba(33,33,33,1)'},
+          headerTintColor: 'white',
+          headerBackTitle: '',
+        }}
+      />
     </Stack.Navigator>
   );
 };
