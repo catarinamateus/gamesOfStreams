@@ -11,11 +11,15 @@ export const Colors: ColorsType = {
 export const Theme: ThemeType = {
   background: Colors.darkGrey,
   text: Colors.white,
+  secondaryText: Colors.yellow,
   button: {background: Colors.yellow, text: Colors.black},
   card: {
     background: Colors.midGrey,
   },
   bottomBar: {
     background: Colors.midGrey,
+  },
+  counter: {
+    text: Colors.yellow,
   },
 };

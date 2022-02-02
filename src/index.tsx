@@ -4,10 +4,13 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from './screens/Home';
 import Catalogue from './screens/Catalogue';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Games from './screens/Games';
+import {Theme} from './theme';
 
 export type RootStackParamList = {
   Dashboard: undefined;
   Catalogue: undefined;
+  Game: undefined;
 };
 
 const Tab = createBottomTabNavigator();
@@ -23,6 +26,12 @@ const HomeTabs = () => {
   );
 };
 
+const headerOptions = {
+  headerStyle: {backgroundColor: Theme.background},
+  headerTintColor: Theme.text,
+  headerBackTitle: '',
+};
+
 const App = () => {
   return (
     <Stack.Navigator>
@@ -34,12 +43,9 @@ const App = () => {
       <Stack.Screen
         name="Catalogue"
         component={Catalogue}
-        options={{
-          headerStyle: {backgroundColor: 'rgba(33,33,33,1)'},
-          headerTintColor: 'white',
-          headerBackTitle: '',
-        }}
+        options={headerOptions}
       />
+      <Stack.Screen name="Game" component={Games} options={headerOptions} />
     </Stack.Navigator>
   );
 };

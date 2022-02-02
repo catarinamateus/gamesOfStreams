@@ -31,7 +31,7 @@ const Home = () => {
         <Button
           // temporary for navigation into catalogue. To remove once real design is done
           title="Catalogue"
-          onPress={() => navigation.navigate('Catalogue')}
+          onPress={() => navigation.navigate('Game')}
         />
       </ScrollView>
     </SafeAreaView>

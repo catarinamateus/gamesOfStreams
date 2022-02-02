@@ -9,6 +9,7 @@ export interface ColorsType {
 export interface ThemeType {
   background: string;
   text: string;
+  secondaryText: string;
   card: {
     background: string;
   };
@@ -16,4 +17,7 @@ export interface ThemeType {
     background: string;
   };
   button: {background: string; text: string};
+  counter: {
+    text: string;
+  };
 }
