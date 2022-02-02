@@ -1,13 +1,14 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import Home from './screens/Home';
 import Rankings from './screens/Rankings';
 import Catalogue from './screens/Catalogue';
 import Settings from './screens/Settings';
 import Games from './screens/Games';
-import {Theme} from './theme';
+import { Theme, Colors } from './theme';
 
 export type RootStackParamList = {
   Dashboard: undefined;
@@ -18,11 +19,33 @@ export type RootStackParamList = {
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
+const screenOptions = (route: string, color: string) => {
+  const iconMap = {
+    Home: 'home',
+    Rankings: 'signal-cellular-alt',
+    Settings: 'settings',
+  }
+  return <Icon name={iconMap[route.name]} color={color} size={30} />;
+};
+
 const HomeTabs = () => {
   return (
-    <Tab.Navigator initialRouteName="Home">
+    <Tab.Navigator
+      initialRouteName="Home"
+      tabBarOptions={{
+        activeTintColor: Colors.yellow,
+        tabStyle: {
+          height: 60,
+          backgroundColor: Colors.darkGrey,
+          paddingVertical: 10,
+        }
+      }}
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ color }) => screenOptions(route, color),
+      })}
+    >
       <Tab.Screen name="Rankings" component={Rankings} />
-      <Tab.Screen name="Home" component={Home} options={{headerShown: false}} />
+      <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
       <Tab.Screen name="Settings" component={Settings} />
     </Tab.Navigator>
   );
