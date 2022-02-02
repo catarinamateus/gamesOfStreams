@@ -12,7 +12,7 @@ import {useNavigation} from '@react-navigation/native';
 import {RootStackParamList} from '../..';
 import {StackNavigationProp} from '@react-navigation/stack';
 
-type homeScreenProp = StackNavigationProp<RootStackParamList, 'Home'>;
+type homeScreenProp = StackNavigationProp<RootStackParamList, 'Dashboard'>;
 
 const Home = () => {
   const isDarkMode = useColorScheme() === 'dark';
