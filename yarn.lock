@@ -1437,6 +1437,11 @@
   "resolved" "https://registry.npmjs.org/@react-navigation/elements/-/elements-1.3.0.tgz"
   "version" "1.3.0"
 
+"@react-navigation/elements@^1.3.1":
+  "integrity" "sha512-jIDRJaG8YPIinl4hZXJu/W3TnhDe8hLYmGSEdL1mxZ1aoNMiApCBYkgTy11oq0EfK/koZd3DPSkJNbzBAQmPJw=="
+  "resolved" "https://registry.npmjs.org/@react-navigation/elements/-/elements-1.3.1.tgz"
+  "version" "1.3.1"
+
 "@react-navigation/native-stack@^6.3.0":
   "integrity" "sha512-qH+zBkEzIFQSqeww1RUOVlMVNGtv1zZ+tSsePn82SBEjQ8nIM1zpI70nG+q+upaWI5C8YKmKouTt4Krdcrludg=="
   "resolved" "https://registry.npmjs.org/@react-navigation/native-stack/-/native-stack-6.3.0.tgz"
@@ -1461,6 +1466,15 @@
   "version" "6.1.0"
   dependencies:
     "nanoid" "^3.1.23"
+
+"@react-navigation/stack@^6.1.1":
+  "integrity" "sha512-mr7CrP3rvYapTZj/xUInJYDte2QEQPvK8qBI6kbJ6goeLqRMkcO7haK4Q5FeV1HVYCUnssAn7CA5j+OOm59syg=="
+  "resolved" "https://registry.npmjs.org/@react-navigation/stack/-/stack-6.1.1.tgz"
+  "version" "6.1.1"
+  dependencies:
+    "@react-navigation/elements" "^1.3.1"
+    "color" "^3.1.3"
+    "warn-once" "^0.1.0"
 
 "@sideway/address@^4.1.3":
   "integrity" "sha512-8ncEUtmnTsMmL7z1YPB47kPUq7LpKWJNFPsRzHiIajGC5uXlWGn+AmkYPcHNl8S4tcEGx+cnORnNYaw2wvL+LQ=="
@@ -6064,7 +6078,7 @@
     "jscodeshift" "^0.11.0"
     "nullthrows" "^1.1.1"
 
-"react-native-gesture-handler@*", "react-native-gesture-handler@^2.2.0":
+"react-native-gesture-handler@*", "react-native-gesture-handler@^2.2.0", "react-native-gesture-handler@>= 1.0.0":
   "integrity" "sha512-WF25CNgn164bF9juW8N/jICIFXiEOgsxCuY7DRlnFdiH5ZfvMYtZHRC+zr1fFMap2ty1f2HWDQNVVSo0FDXP4A=="
   "resolved" "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.2.0.tgz"
   "version" "2.2.0"

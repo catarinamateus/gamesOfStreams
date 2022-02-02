@@ -5,7 +5,6 @@ import MaterialIcon from '../MaterialIcon';
 
 interface UserLevelIconProps {
   size?: number;
-  color?: string;
 }
 
 const UserLevelIconConverter = {
