@@ -15,3 +15,8 @@ export interface UserLeaderboardType {
   totalTimeWatched: number;
   totalPoints: number;
 }
+
+export interface UseDataClientType {
+  getUserPoints: (userId: string) => Promise<number | undefined>;
+  getLeaderBoard: () => Promise<UserLeaderboardType[] | undefined>;
+}

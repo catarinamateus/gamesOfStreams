@@ -20,6 +20,7 @@ const Home = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const styles = HomeStyles();
   const {user} = useAppContext();
+
   return (
     <>
       <StatusBar barStyle={'light-content'} />

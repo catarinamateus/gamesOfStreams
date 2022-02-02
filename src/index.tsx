@@ -8,7 +8,7 @@ import Rankings from './screens/Rankings';
 import Catalogue from './screens/Catalogue';
 import Settings from './screens/Settings';
 import Games from './screens/Games';
-import { Theme, Colors } from './theme';
+import {Theme, Colors} from './theme';
 
 export type RootStackParamList = {
   Dashboard: undefined;
@@ -19,12 +19,18 @@ export type RootStackParamList = {
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const screenOptions = (route: string, color: string) => {
+const headerOptions = {
+  headerStyle: {backgroundColor: Theme.background},
+  headerTintColor: Theme.text,
+  headerBackTitle: '',
+};
+
+const getTabIcon = (route: string, color: string) => {
   const iconMap = {
     Home: 'home',
     Rankings: 'signal-cellular-alt',
     Settings: 'settings',
-  }
+  };
   return <Icon name={iconMap[route.name]} color={color} size={30} />;
 };
 
@@ -32,29 +38,24 @@ const HomeTabs = () => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
+      sceneContainerStyle={{backgroundColor: Theme.background}}
       tabBarOptions={{
         activeTintColor: Colors.yellow,
         tabStyle: {
           height: 60,
-          backgroundColor: Colors.darkGrey,
+          backgroundColor: Theme.background,
           paddingVertical: 10,
-        }
+          paddingBottom: 0,
+        },
       }}
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ color }) => screenOptions(route, color),
-      })}
-    >
+      screenOptions={({route}) => ({
+        tabBarIcon: ({color}) => getTabIcon(route, color),
+      })}>
       <Tab.Screen name="Rankings" component={Rankings} />
-      <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
+      <Tab.Screen name="Home" component={Home} options={{headerShown: false}} />
       <Tab.Screen name="Settings" component={Settings} />
     </Tab.Navigator>
   );
-};
-
-const headerOptions = {
-  headerStyle: {backgroundColor: Theme.background},
-  headerTintColor: Theme.text,
-  headerBackTitle: '',
 };
 
 const App = () => {
