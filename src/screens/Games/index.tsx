@@ -28,6 +28,7 @@ const Games = (): JSX.Element => {
   const currentCorrectAnswer: number = currentRound.rightAnswer;
 
   React.useEffect(() => {
+    // Interval to start game
     let timer = setInterval(() => {
       setStartCount(count => {
         const updatedCounter = count - 1;
@@ -43,6 +44,7 @@ const Games = (): JSX.Element => {
   }, []);
 
   React.useEffect(() => {
+    // Countdown until game finishes
     if (startCount === 0) {
       let timer = setInterval(() => {
         setCounter(count => {
@@ -64,7 +66,7 @@ const Games = (): JSX.Element => {
       setTotalPoints(totalPoints + pointsToWin);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [correctAnswers, totalPoints, totalQuestions]);
+  }, [correctAnswers]);
 
   const onNextQuestion = () => {
     setQuestionsAnswered(number => {
