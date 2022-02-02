@@ -1,0 +1,53 @@
+[
+    {
+        "title": "Dune",
+        "year": "2021",
+        "duration": 155,
+        "genres": [
+            "Science fiction",
+            "Adventure"
+        ],
+        "description": "Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet's exclusive supply of the most precious resource in existence-a commodity capable of unlocking humanity's greatest potential-only those who can conquer their fear will survive.",
+        "director": "Denis Villeneuve",
+        "image": "https://www.themoviedb.org/t/p/original/guB0jTCIlMB5gJUILzZrxXVMuyJ.jpg"
+    },
+    {
+        "title": "Dangerous",
+        "year": "2021",
+        "duration": 99,
+        "genres": [
+            "Action",
+            "Thriller"
+        ],
+        "description": "A reformed sociopath heads to a remote island after the death of his brother. Soon after his arrival, the island falls under siege from a deadly gang of mercenaries, and when he discovers their role in his brother’s demise, he sets out on a relentless quest for vengeance.",
+        "director": "David Hackl",
+        "image": "https://www.themoviedb.org/t/p/w533_and_h300_bestv2/xfw0039wlSwepmy7xXVVvTOkh8v.jpg"
+    },
+    {
+        "title": "The Amazing Spider-Man",
+        "year": "2012",
+        "duration": 136,
+        "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy"
+        ],
+        "description": "Peter Parker is an outcast high schooler abandoned by his parents as a boy, leaving him to be raised by his Uncle Ben and Aunt May. Like most teenagers, Peter is trying to figure out who he is and how he got to be the person he is today. As Peter discovers a mysterious briefcase that belonged to his father, he begins a quest to understand his parents' disappearance – leading him directly to Oscorp and the lab of Dr. Curt Connors, his father's former partner. As Spider-Man is set on a collision course with Connors' alter ego, The Lizard, Peter will make life-altering choices to use his powers and shape his destiny to become a hero.",
+        "director": "Marc Webb",
+        "image": "https://www.themoviedb.org/t/p/w533_and_h300_bestv2/sLWUtbrpiLp23a0XDSiUiltdFPJ.jpg"
+    },
+    {
+        "title": "Transporter 3",
+        "year": "2008",
+        "duration": 104,
+        "genres": [
+            "Action",
+            "Adventure",
+            "Thriller",
+            "Crime"
+        ],
+        "description": "Peter Parker is an outcast high schooler abandoned by his parents as a boy, leaving him to be raised by his Uncle Ben and Aunt May. Like most teenagers, Peter is trying to figure out who he is and how he got to be the person he is today. As Peter discovers a mysterious briefcase that belonged to his father, he begins a quest to understand his parents' disappearance – leading him directly to Oscorp and the lab of Dr. Curt Connors, his father's former partner. As Spider-Man is set on a collision course with Connors' alter ego, The Lizard, Peter will make life-altering choices to use his powers and shape his destiny to become a hero.",
+        "director": "Olivier Megaton",
+        "image": "https://www.themoviedb.org/t/p/w533_and_h300_bestv2/AnQNsdhnqpxC0GuwEgYzFnZ02RM.jpg"
+    }
+]
