@@ -9,9 +9,11 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import lastWatchedData from '../../../lastWatchedData.json';
-import { COLORS } from '../../../constants';
+import { HomeStyles } from './styles/index';
 
-const Home = () => {
+const Home = (props) => {
+  const { navigation } = props;
+  const styles = HomeStyles();
   return (
     <>
       <StatusBar barStyle={'light-content'} />
@@ -32,7 +34,7 @@ const Home = () => {
                 key={index}
                 style={styles.imageContainer}
                 //TODO navigate to detail page?
-                onPress={() => console.log("PPRE")}
+                onPress={() => console.log("PPRESSED")}
               >
                 <Image
                   source={{
@@ -45,11 +47,13 @@ const Home = () => {
           </ScrollView>
         </View>
 
-        <View style={{ paddingHorizontal: 20, width: '100%', marginTop: 20 }}>
-          <TouchableHighlight style={{ height: 112, width: '100%', backgroundColor: '#1f1f1f', borderRadius: 8 }}>
+        <View style={styles.buttonContainer}>
+          <TouchableHighlight
+            onPress={() => navigation.navigate('Catalogue')}
+            style={styles.button}>
             <LinearGradient
-              colors={COLORS.gradient}
-              style={{ width: '100%', height: 112, justifyContent: 'center', alignItems: 'center', borderRadius: 8 }}>
+              colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.7)']}
+              style={styles.buttonLinear}>
               <Text style={styles.sectionTitle}>Catalogue</Text>
             </LinearGradient>
           </TouchableHighlight>
@@ -59,52 +63,5 @@ const Home = () => {
     </>
   )
 };
-
-const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: '#2a2a2a',
-    alignItems: 'center',
-  },
-  avatarImage: {
-    marginTop: 100,
-    width: 175,
-    height: 175,
-    borderRadius: 100
-  },
-  avatarInfoContainer: {
-    alignItems: 'center',
-    marginBottom: 20
-  },
-  avatarName: {
-    marginTop: 10,
-    color: COLORS.textColor,
-    fontSize: 32,
-    fontWeigth: "800",
-  },
-  avatarPoints: {
-    marginTop: 5,
-    color: COLORS.textColor,
-    fontSize: 18,
-    fontWeigth: "800",
-  },
-  sectionContainer: {
-    marginTop: 20,
-    width: '100%',
-  },
-  sectionTitle: {
-    marginLeft: 20,
-    marginBottom: 10,
-    color: COLORS.textColor,
-    fontSize: 18,
-    fontWeigth: "800",
-  },
-  imageContainer: {
-    marginLeft: 10,
-    width: 200,
-    height: 112,
-    borderRadius: 8
-  }
-}
 
 export default Home;

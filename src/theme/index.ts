@@ -6,6 +6,7 @@ export const Colors: ColorsType = {
   yellow: '#FABC0B',
   white: '#FFF3F3',
   black: '#000000',
+  gradient: ['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.7)']
 };
 
 export const Theme: ThemeType = {

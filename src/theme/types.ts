@@ -4,6 +4,7 @@ export interface ColorsType {
   yellow: string;
   white: string;
   black: string;
+  gradient: string[];
 }
 
 export interface ThemeType {

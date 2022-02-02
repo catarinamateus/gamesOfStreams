@@ -5,10 +5,10 @@ import {
   View,
 } from 'react-native';
 
-const Rankings = () => {
+const Settings = () => {
   return (
     <View style={styles.container}>
-      <Text>SETTINGS SCREEN</Text>
+      <Text>RANKINGS SCREEN</Text>
     </View>
   )
 };
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Rankings;
+export default Settings;
