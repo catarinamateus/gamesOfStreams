@@ -35,6 +35,23 @@ const Rankings = () => {
 
   const {isLoading} = useAppContext();
 
+   const formatDurationText = (s: number): string => {
+     console.log("duration: ", s)
+    let m: number;
+    m = Math.floor(s / 60);
+    s %= 60;
+    const h = Math.floor(m / 60);
+    m %= 60;
+    if (h === 0) {
+        return `${m}m`;
+    }
+
+    if (m === 0 || h >= 10 || m < 1) {
+        return `${h}h`;
+    }
+    return `${h}h ${m}m`;
+};
+
   if (isLoading) {
     return (
       <ActivityIndicator
@@ -53,7 +70,7 @@ const Rankings = () => {
             <RankUserItem
               displayName={user.userDetails.displayName}
               avatarImage={'https://i.pravatar.cc/300'}
-              totalTimeWatched={user.totalTimeWatched}
+              totalTimeWatched={formatDurationText(user.totalTimeWatched)}
               totalPoints={user.totalPoints}
             />
           ),
