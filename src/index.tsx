@@ -10,11 +10,13 @@ import {Theme, Colors} from './theme';
 import {useAppContext} from './context';
 import useDataClient from './hooks/useDataClient';
 import MaterialIcon from './components/MaterialIcon';
+import DailyReward from './screens/DailyReward';
 
 export type RootStackParamList = {
   Dashboard: undefined;
   Catalogue: undefined;
   Game: undefined;
+  DailyReward: undefined;
 };
 
 const Tab = createBottomTabNavigator();
@@ -32,7 +34,9 @@ const getTabIcon = (route: string, color: string) => {
     Rankings: 'signal-cellular-alt',
     Settings: 'settings',
   };
-  return <MaterialIcon name={iconMap[route]} color={color} size={30} />;
+  return (
+    <MaterialIcon name={(iconMap as any)[route]} color={color} size={30} />
+  );
 };
 
 const HomeTabs = () => {
@@ -40,17 +44,15 @@ const HomeTabs = () => {
     <Tab.Navigator
       initialRouteName="Home"
       sceneContainerStyle={{backgroundColor: Theme.background}}
-      tabBarOptions={{
-        activeTintColor: Colors.yellow,
-        tabStyle: {
-          height: 60,
-          backgroundColor: Theme.background,
-          paddingVertical: 10,
-          paddingBottom: 0,
-        },
-      }}
       screenOptions={({route}) => ({
         tabBarIcon: ({color}) => getTabIcon(route.name, color),
+        tabBarStyle: {
+          height: 72,
+          backgroundColor: Theme.background,
+          paddingTop: 8,
+          paddingBottom: 18,
+        },
+        tabBarActiveTintColor: Colors.yellow,
       })}>
       <Tab.Screen name="Rankings" component={Rankings} />
       <Tab.Screen name="Home" component={Home} options={{headerShown: false}} />
@@ -89,6 +91,11 @@ const App = () => {
         options={headerOptions}
       />
       <Stack.Screen name="Game" component={Games} options={headerOptions} />
+      <Stack.Screen
+        name="DailyReward"
+        component={DailyReward}
+        options={{...headerOptions, headerTitle: 'Daily Reward'}}
+      />
     </Stack.Navigator>
   );
 };
