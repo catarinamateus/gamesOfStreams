@@ -7,16 +7,21 @@ import Catalogue from './screens/Catalogue';
 import Settings from './screens/Settings';
 import Games from './screens/Games';
 import {Theme, Colors} from './theme';
-import {useAppContext} from './context';
-import useDataClient from './hooks/useDataClient';
 import MaterialIcon from './components/MaterialIcon';
 import DailyReward from './screens/DailyReward';
+import {Asset} from './hooks/useDataClient/types';
+import Login from './screens/Login';
+import Landing from './screens/Landing';
 
 export type RootStackParamList = {
   Dashboard: undefined;
+  Login: undefined;
+  Landing: undefined;
   Catalogue: undefined;
-  Game: undefined;
   DailyReward: undefined;
+  Game: {
+    asset: Asset;
+  };
 };
 
 const Tab = createBottomTabNavigator();
@@ -27,6 +32,16 @@ const headerOptions = {
   headerTintColor: Theme.text,
   headerBackTitle: '',
 };
+
+// const tabBarCustomOptions = {
+//   activeTintColor: Colors.yellow,
+//   tabStyle: {
+//     height: 60,
+//     backgroundColor: Theme.background,
+//     paddingVertical: 10,
+//     paddingBottom: 0,
+//   },
+// };
 
 const getTabIcon = (route: string, color: string) => {
   const iconMap = {
@@ -54,32 +69,34 @@ const HomeTabs = () => {
         },
         tabBarActiveTintColor: Colors.yellow,
       })}>
-      <Tab.Screen name="Rankings" component={Rankings} />
+      <Tab.Screen
+        name="Rankings"
+        component={Rankings}
+        options={headerOptions}
+      />
       <Tab.Screen name="Home" component={Home} options={{headerShown: false}} />
-      <Tab.Screen name="Settings" component={Settings} />
+      <Tab.Screen
+        name="Settings"
+        component={Settings}
+        options={{headerShown: false}}
+      />
     </Tab.Navigator>
   );
 };
 
 const App = () => {
-  const {setTotalPoints, user} = useAppContext();
-  const {getUserPoints} = useDataClient();
-
-  React.useEffect(() => {
-    async function fetchData() {
-      if (user) {
-        const points = await getUserPoints(user.id);
-        if (typeof points === 'number') {
-          setTotalPoints(points);
-        }
-      }
-    }
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
-
   return (
     <Stack.Navigator>
+      <Stack.Screen
+        name="Landing"
+        component={Landing}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{headerShown: false}}
+      />
       <Stack.Screen
         name="Dashboard"
         component={HomeTabs}

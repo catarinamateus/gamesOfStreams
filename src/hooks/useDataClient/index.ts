@@ -1,4 +1,4 @@
-import {UseDataClientType, UserLeaderboardType} from './types';
+import {Asset, UseDataClientType, UserData, UserLeaderboardType} from './types';
 import axios from 'axios';
 
 const useDataClient = (): UseDataClientType => {
@@ -20,7 +20,29 @@ const useDataClient = (): UseDataClientType => {
     return response.data;
   };
 
-  return {getUserPoints, getLeaderBoard};
+  const getLastWatched = async (
+    username: string,
+    password: string,
+  ): Promise<Asset[] | undefined> => {
+    const endpoint = `http://3.71.13.88:3000/users/788638771/lastwatched?username=${username}&password=${password}`;
+
+    const response = await axios({url: endpoint, method: 'get'});
+
+    return response.data;
+  };
+
+  const getUserDetails = async (
+    username: string,
+    password: string,
+  ): Promise<UserData | undefined> => {
+    const endpoint = `http://3.71.13.88:3000/users/detail?username=${username}&password=${password}`;
+
+    const response = await axios({url: endpoint, method: 'get'});
+
+    return response.data;
+  };
+
+  return {getUserPoints, getLeaderBoard, getLastWatched, getUserDetails};
 };
 
 export default useDataClient;

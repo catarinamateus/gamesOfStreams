@@ -65,4 +65,9 @@ export const HomeStyles = () =>
     horizontalScroll: {
       width: 'auto',
     },
+    loader: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
   });

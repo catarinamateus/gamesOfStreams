@@ -8,11 +8,11 @@ import {
   StatusBar,
   SafeAreaView,
   ImageBackground,
+  ActivityIndicator,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
 import {RootStackParamList} from '../..';
-import lastWatchedData from '../../../lastWatchedData.json';
 import {useAppContext} from '../../context';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {HomeStyles} from './styles/index';
@@ -21,7 +21,17 @@ import {Colors} from '../../theme';
 const Home = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const styles = HomeStyles();
-  const {user, totalPoints} = useAppContext();
+  const {user, totalPoints, isLoading} = useAppContext();
+
+  if (isLoading) {
+    return (
+      <ActivityIndicator
+        color={Colors.yellow}
+        size={'large'}
+        style={styles.loader}
+      />
+    );
+  }
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -30,10 +40,7 @@ const Home = () => {
         style={styles.container}
         contentInsetAdjustmentBehavior="automatic"
         showsVerticalScrollIndicator={false}>
-        <Image
-          style={styles.avatarImage}
-          source={require('../../assets/images/mainAvatar.png')}
-        />
+        <Image style={styles.avatarImage} source={{uri: user?.image}} />
 
         <View style={styles.avatarInfoContainer}>
           <Text style={styles.avatarName}>{user?.name}</Text>
@@ -46,14 +53,14 @@ const Home = () => {
             style={styles.horizontalScroll}
             horizontal
             showsHorizontalScrollIndicator={false}>
-            {lastWatchedData.map((film, index) => (
+            {user?.lastWatched.map((film, index) => (
               <TouchableHighlight
                 key={index}
                 style={styles.imageContainer}
-                onPress={() => navigation.navigate('Game')}>
+                onPress={() => navigation.navigate('Game', {asset: film})}>
                 <Image
                   source={{
-                    uri: film.image,
+                    uri: film.images.still[0].url,
                   }}
                   resizeMode="cover"
                   style={styles.imageContainer}
@@ -97,7 +104,7 @@ const Home = () => {
 
         <View style={styles.sectionContainer}>
           <TouchableHighlight
-            onPress={() => navigation.navigate('DailyReward')}
+            onPress={() => navigation.navigate('Catalogue')}
             style={styles.buttonContainer}>
             <ImageBackground
               source={{
