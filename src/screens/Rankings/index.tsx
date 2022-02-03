@@ -11,6 +11,7 @@ import {Theme} from '../../theme';
 
 const Rankings = () => {
   const {getLeaderBoard} = useDataClient();
+  const {user: loggedUser} = useAppContext();
   const [rankingData, setRankingData] = useState<UserLeaderboardType[]>([]);
 
   const getLeaderData = async () => {
@@ -35,22 +36,22 @@ const Rankings = () => {
 
   const {isLoading} = useAppContext();
 
-   const formatDurationText = (s: number): string => {
-     console.log("duration: ", s)
+  const formatDurationText = (s: number): string => {
+    console.log('duration: ', s);
     let m: number;
     m = Math.floor(s / 60);
     s %= 60;
     const h = Math.floor(m / 60);
     m %= 60;
     if (h === 0) {
-        return `${m}m`;
+      return `${m}m`;
     }
 
     if (m === 0 || h >= 10 || m < 1) {
-        return `${h}h`;
+      return `${h}h`;
     }
     return `${h}h ${m}m`;
-};
+  };
 
   if (isLoading) {
     return (
@@ -69,7 +70,11 @@ const Rankings = () => {
           user.userDetails && (
             <RankUserItem
               displayName={user.userDetails.displayName}
-              avatarImage={'https://i.pravatar.cc/300'}
+              avatarImage={
+                user.userDetails.id === loggedUser?.id
+                  ? loggedUser?.image
+                  : 'https://i.pravatar.cc/300'
+              }
               totalTimeWatched={formatDurationText(user.totalTimeWatched)}
               totalPoints={user.totalPoints}
             />
