@@ -39,7 +39,7 @@ const tabBarCustomOptions = {
     paddingVertical: 10,
     paddingBottom: 0,
   },
-}
+};
 
 const getTabIcon = (route: string, color: string) => {
   const iconMap = {
@@ -59,9 +59,17 @@ const HomeTabs = () => {
       screenOptions={({route}) => ({
         tabBarIcon: ({color}) => getTabIcon(route.name, color),
       })}>
-      <Tab.Screen name="Rankings" component={Rankings} options={headerOptions} />
+      <Tab.Screen
+        name="Rankings"
+        component={Rankings}
+        options={headerOptions}
+      />
       <Tab.Screen name="Home" component={Home} options={{headerShown: false}} />
-      <Tab.Screen name="Settings" component={Settings} />
+      <Tab.Screen
+        name="Settings"
+        component={Settings}
+        options={{headerShown: false}}
+      />
     </Tab.Navigator>
   );
 };
