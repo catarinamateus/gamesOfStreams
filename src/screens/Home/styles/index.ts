@@ -6,13 +6,14 @@ export const HomeStyles = () =>
     container: {
       flex: 1,
       backgroundColor: Colors.darkGrey,
-      alignItems: 'center',
+      marginBottom: 8,
     },
     avatarImage: {
-      marginTop: 100,
+      marginTop: 64,
       width: 175,
       height: 175,
       borderRadius: 100,
+      alignSelf: 'center',
     },
     avatarInfoContainer: {
       alignItems: 'center',
@@ -44,19 +45,15 @@ export const HomeStyles = () =>
     imageContainer: {
       marginLeft: 10,
       width: 200,
-      height: 112,
+      height: 144,
       borderRadius: 8,
     },
     buttonContainer: {
-      paddingHorizontal: 20,
-      width: '100%',
-      marginTop: 20,
-    },
-    button: {
-      height: 112,
-      width: '100%',
-      backgroundColor: '#1f1f1f',
+      alignSelf: 'center',
+      width: '90%',
+      height: 176,
       borderRadius: 8,
+      backgroundColor: 'red',
     },
     buttonLinear: {
       width: '100%',
@@ -64,6 +61,9 @@ export const HomeStyles = () =>
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: 8,
+    },
+    horizontalScroll: {
+      width: 'auto',
     },
     loader: {
       flex: 1,

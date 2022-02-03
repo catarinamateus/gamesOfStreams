@@ -8,6 +8,7 @@ import Settings from './screens/Settings';
 import Games from './screens/Games';
 import {Theme, Colors} from './theme';
 import MaterialIcon from './components/MaterialIcon';
+import DailyReward from './screens/DailyReward';
 import {Asset} from './hooks/useDataClient/types';
 import Login from './screens/Login';
 import Landing from './screens/Landing';
@@ -17,6 +18,7 @@ export type RootStackParamList = {
   Login: undefined;
   Landing: undefined;
   Catalogue: undefined;
+  DailyReward: undefined;
   Game: {
     asset: Asset;
   };
@@ -31,15 +33,15 @@ const headerOptions = {
   headerBackTitle: '',
 };
 
-const tabBarCustomOptions = {
-  activeTintColor: Colors.yellow,
-  tabStyle: {
-    height: 60,
-    backgroundColor: Theme.background,
-    paddingVertical: 10,
-    paddingBottom: 0,
-  },
-};
+// const tabBarCustomOptions = {
+//   activeTintColor: Colors.yellow,
+//   tabStyle: {
+//     height: 60,
+//     backgroundColor: Theme.background,
+//     paddingVertical: 10,
+//     paddingBottom: 0,
+//   },
+// };
 
 const getTabIcon = (route: string, color: string) => {
   const iconMap = {
@@ -47,7 +49,9 @@ const getTabIcon = (route: string, color: string) => {
     Rankings: 'signal-cellular-alt',
     Settings: 'settings',
   };
-  return <MaterialIcon name={iconMap[route]} color={color} size={30} />;
+  return (
+    <MaterialIcon name={(iconMap as any)[route]} color={color} size={30} />
+  );
 };
 
 const HomeTabs = () => {
@@ -55,9 +59,15 @@ const HomeTabs = () => {
     <Tab.Navigator
       initialRouteName="Home"
       sceneContainerStyle={{backgroundColor: Theme.background}}
-      tabBarOptions={tabBarCustomOptions}
       screenOptions={({route}) => ({
         tabBarIcon: ({color}) => getTabIcon(route.name, color),
+        tabBarStyle: {
+          height: 72,
+          backgroundColor: Theme.background,
+          paddingTop: 8,
+          paddingBottom: 18,
+        },
+        tabBarActiveTintColor: Colors.yellow,
       })}>
       <Tab.Screen
         name="Rankings"
@@ -98,6 +108,11 @@ const App = () => {
         options={headerOptions}
       />
       <Stack.Screen name="Game" component={Games} options={headerOptions} />
+      <Stack.Screen
+        name="DailyReward"
+        component={DailyReward}
+        options={{...headerOptions, headerTitle: 'Daily Reward'}}
+      />
     </Stack.Navigator>
   );
 };

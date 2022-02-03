@@ -13,7 +13,7 @@ import {useAppContext} from '../../context';
 import {catalogueStyles} from './styles';
 import {CatalogueOption, catalogueOptions} from './utils';
 
-const Home = () => {
+const Catalogue = () => {
   const styles = catalogueStyles();
   const {totalPoints} = useAppContext();
 
@@ -26,7 +26,10 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle={'light-content'} />
-      <Text style={styles.balanceText}>{`Your ${totalPoints} balance: `}</Text>
+      <Text
+        style={
+          styles.balanceText
+        }>{`Your balance: ${totalPoints} points.`}</Text>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={styles.backgroundStyle}>
@@ -49,4 +52,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Catalogue;
