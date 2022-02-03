@@ -37,6 +37,7 @@ export const AppContextProvider = ({children}: {children: ReactNode}) => {
           password, //never do this, only for demo :)
           image: userData.profile.image.images.avatar[0].url,
           lastWatched: lastWatched ? lastWatched : lastWatchedMock, //fallback in case api fails during demo
+          totalTimeWatched: 320,
         });
       } else {
         //fallback in case api fails during demo

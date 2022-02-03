@@ -15,6 +15,7 @@ export interface UserType {
   password: string;
   image: string;
   lastWatched: Asset[];
+  totalTimeWatched: number;
 }
 
 export interface AppContextType {

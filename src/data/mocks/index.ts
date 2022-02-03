@@ -160,6 +160,7 @@ export const mockedUser: UserType = {
   image:
     'https://cdn.backstage-api.com?key=backstage-cms-production-uploads/250x250/5e0ad1b0-515e-11e9-a7ed-371ac744bd33/profile-images/img/5c55a618-e55a-4c68-85ed-55afa4b8e2fb-image%201@2x.png',
   lastWatched: lastWatchedMock,
+  totalTimeWatched: 320,
 };
 
 export const mockedRanking: UserLeaderboardType[] = [
@@ -234,7 +235,8 @@ export const mockedRanking: UserLeaderboardType[] = [
     lastEventTimeStamps: 0,
     totalTimeWatched: 2780,
     totalPoints: 980,
-  },{
+  },
+  {
     userDetails: {
       id: '1',
       email: ' ',
@@ -252,4 +254,4 @@ export const mockedRanking: UserLeaderboardType[] = [
     totalTimeWatched: 3500,
     totalPoints: 1500,
   },
-]
+];
