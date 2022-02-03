@@ -36,7 +36,7 @@ const Rankings = () => {
           user.userDetails && (
             <RankUserItem
               displayName={user.userDetails.displayName}
-              avatarImage={user.userDetails.avatarImage}
+              avatarImage={'https://i.pravatar.cc/300'}
               totalTimeWatched={user.totalTimeWatched}
               totalPoints={user.totalPoints}
             />
