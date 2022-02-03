@@ -9,9 +9,13 @@ import Games from './screens/Games';
 import {Theme, Colors} from './theme';
 import MaterialIcon from './components/MaterialIcon';
 import {Asset} from './hooks/useDataClient/types';
+import Login from './screens/Login';
+import Landing from './screens/Landing';
 
 export type RootStackParamList = {
   Dashboard: undefined;
+  Login: undefined;
+  Landing: undefined;
   Catalogue: undefined;
   Game: {
     asset: Asset;
@@ -63,6 +67,16 @@ const HomeTabs = () => {
 const App = () => {
   return (
     <Stack.Navigator>
+      <Stack.Screen
+        name="Landing"
+        component={Landing}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{headerShown: false}}
+      />
       <Stack.Screen
         name="Dashboard"
         component={HomeTabs}

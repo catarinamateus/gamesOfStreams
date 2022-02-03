@@ -24,29 +24,36 @@ export const AppContextProvider = ({children}: {children: ReactNode}) => {
 
   const login = async (username: string, password: string) => {
     setIsLoading(true);
-    const userData = await getUserDetails(username, password);
-    const points = await getUserPoints('788638771');
-    const lastWatched = await getLastWatched(username, password);
+    try {
+      const userData = await getUserDetails(username, password);
+      const lastWatched = await getLastWatched(username, password);
 
-    if (userData) {
-      setUser({
-        id: userData.id,
-        name: userData.displayName,
-        level: UserLevelEnum.Master,
-        email: userData.email,
-        password, //never do this, only for demo :)
-        image: userData.profile.image.images.avatar[0].url,
-        lastWatched: lastWatched ? lastWatched : lastWatchedMock,
-      });
-    } else {
-      //fallback in case api fails during demo
+      if (userData) {
+        setUser({
+          id: userData.id,
+          name: userData.displayName,
+          level: UserLevelEnum.Master,
+          email: userData.email,
+          password, //never do this, only for demo :)
+          image: userData.profile.image.images.avatar[0].url,
+          lastWatched: lastWatched ? lastWatched : lastWatchedMock, //fallback in case api fails during demo
+        });
+      } else {
+        //fallback in case api fails during demo
+        setUser(mockedUser);
+      }
+
+      const points = await getUserPoints(userData?.id || '788638771'); //fallback in case api fails during demo
+
+      if (typeof points === 'number') {
+        setPoints(points);
+      }
+      setIsLoading(false);
+    } catch (e) {
+      console.log('Error fetching user data', e);
       setUser(mockedUser);
+      setIsLoading(false);
     }
-
-    if (typeof points === 'number') {
-      setPoints(points);
-    }
-    setIsLoading(false);
   };
 
   const logout = () => {
