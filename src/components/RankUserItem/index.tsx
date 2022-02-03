@@ -5,7 +5,7 @@ import { RankUserItemStyles } from './styles/index';
 type RankUserItemProps = {
     displayName: string;
     avatarImage?: string;
-    totalTimeWatched: number;
+    totalTimeWatched: string;
     totalPoints: number;
 };
 
