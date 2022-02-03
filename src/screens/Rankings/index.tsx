@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import {
     ScrollView,
     StyleSheet,
-    Text,
 } from 'react-native';
 import useDataClient from '../../hooks/useDataClient';
 
 import RankUserItem from '../../components/RankUserItem';
 import { UserLeaderboardType } from '../../hooks/useDataClient/types';
+import { mockedRanking } from '../../data/mocks';
 
 const Rankings = () => {
     const { getLeaderBoard } = useDataClient();
@@ -20,6 +20,7 @@ const Rankings = () => {
             orderedData && setRankingData(orderedData)
             return data
         } catch (err) {
+            setRankingData(mockedRanking.sort((a, b) => b.totalPoints - a.totalPoints))
             console.log(err)
         }
     }
