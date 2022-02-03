@@ -1,4 +1,3 @@
-import { colors } from '@mui/material';
 import { StyleSheet } from 'react-native';
 import { Colors } from '../../../theme';
 

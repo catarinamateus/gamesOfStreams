@@ -10,6 +10,7 @@ export interface UserLeaderboardType {
     country: string;
     pending: boolean;
     age: number;
+    avatarImage?: string;
   };
   lastEventTimeStamps: number;
   totalTimeWatched: number;

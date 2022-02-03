@@ -25,6 +25,16 @@ const headerOptions = {
   headerBackTitle: '',
 };
 
+const tabBarCustomOptions = {
+  activeTintColor: Colors.yellow,
+  tabStyle: {
+    height: 60,
+    backgroundColor: Theme.background,
+    paddingVertical: 10,
+    paddingBottom: 0,
+  },
+}
+
 const getTabIcon = (route: string, color: string) => {
   const iconMap = {
     Home: 'home',
@@ -39,19 +49,11 @@ const HomeTabs = () => {
     <Tab.Navigator
       initialRouteName="Home"
       sceneContainerStyle={{backgroundColor: Theme.background}}
-      tabBarOptions={{
-        activeTintColor: Colors.yellow,
-        tabStyle: {
-          height: 60,
-          backgroundColor: Theme.background,
-          paddingVertical: 10,
-          paddingBottom: 0,
-        },
-      }}
+      tabBarOptions={tabBarCustomOptions}
       screenOptions={({route}) => ({
         tabBarIcon: ({color}) => getTabIcon(route, color),
       })}>
-      <Tab.Screen name="Rankings" component={Rankings} />
+      <Tab.Screen name="Rankings" component={Rankings} options={headerOptions} />
       <Tab.Screen name="Home" component={Home} options={{headerShown: false}} />
       <Tab.Screen name="Settings" component={Settings} />
     </Tab.Navigator>
