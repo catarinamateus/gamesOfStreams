@@ -1,3 +1,5 @@
+import {Asset} from '../hooks/useDataClient/types';
+
 export enum UserLevelEnum {
   Initial = 'Initial',
   Medium = 'Medium',
@@ -8,12 +10,19 @@ export enum UserLevelEnum {
 export interface UserType {
   id: string;
   name: string;
-  totalPoint: number;
   level: UserLevelEnum;
+  email: string;
+  password: string;
+  image: string;
+  lastWatched: Asset[];
 }
 
 export interface AppContextType {
   user?: UserType;
-  login: (user: UserType) => void;
-  logout: () => void;
+  totalPoints: number;
+  login: (username: string, password: string) => Promise<void>;
+  logout: (username: string, password: string) => void;
+  setTotalPoints: (total: number) => void;
+  isLoading: boolean;
+  setIsLoading: (loading: boolean) => void;
 }

@@ -46,6 +46,11 @@ const styles = StyleSheet.create({
     color: Theme.counter.text,
     fontSize: 25,
   },
+  image: {
+    width: 300,
+    height: 300,
+    marginBottom: 20,
+  },
 });
 
 export default styles;

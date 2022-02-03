@@ -6,33 +6,41 @@ import {
   View,
   TouchableHighlight,
   StatusBar,
+  ActivityIndicator,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useNavigation} from '@react-navigation/core';
 
 import {RootStackParamList} from '../..';
-import lastWatchedData from '../../../lastWatchedData.json';
 import {useAppContext} from '../../context';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {HomeStyles} from './styles/index';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const Home = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const styles = HomeStyles();
-  const {user} = useAppContext();
+  const {user, totalPoints, isLoading} = useAppContext();
+
+  if (isLoading) {
+    return (
+      <ActivityIndicator
+        color={Colors.yellow}
+        size={'large'}
+        style={styles.loader}
+      />
+    );
+  }
 
   return (
     <>
       <StatusBar barStyle={'light-content'} />
       <View style={styles.container}>
-        <Image
-          style={styles.avatarImage}
-          source={require('../../assets/images/mainAvatar.png')}
-        />
+        <Image style={styles.avatarImage} source={{uri: user?.image}} />
 
         <View style={styles.avatarInfoContainer}>
           <Text style={styles.avatarName}>{user?.name}</Text>
-          <Text style={styles.avatarPoints}>{user?.totalPoint} points</Text>
+          <Text style={styles.avatarPoints}>{totalPoints} points</Text>
         </View>
 
         <View style={styles.sectionContainer}>
@@ -40,14 +48,14 @@ const Home = () => {
             Click in one of the last watched to start game
           </Text>
           <ScrollView horizontal>
-            {lastWatchedData.map((film, index) => (
+            {user?.lastWatched.map((film, index) => (
               <TouchableHighlight
                 key={index}
                 style={styles.imageContainer}
-                onPress={() => navigation.navigate('Game')}>
+                onPress={() => navigation.navigate('Game', {asset: film})}>
                 <Image
                   source={{
-                    uri: film.image,
+                    uri: film.images.still[0].url,
                   }}
                   style={styles.imageContainer}
                 />
