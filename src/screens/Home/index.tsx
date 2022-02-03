@@ -6,6 +6,7 @@ import {
   View,
   TouchableHighlight,
   StatusBar,
+  ActivityIndicator,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useNavigation} from '@react-navigation/core';
@@ -15,20 +16,28 @@ import lastWatchedData from '../../../lastWatchedData.json';
 import {useAppContext} from '../../context';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {HomeStyles} from './styles/index';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const Home = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const styles = HomeStyles();
-  const {user, totalPoints} = useAppContext();
+  const {user, totalPoints, isLoading} = useAppContext();
+
+  if (isLoading) {
+    return (
+      <ActivityIndicator
+        color={Colors.yellow}
+        size={'large'}
+        style={styles.loader}
+      />
+    );
+  }
 
   return (
     <>
       <StatusBar barStyle={'light-content'} />
       <View style={styles.container}>
-        <Image
-          style={styles.avatarImage}
-          source={require('../../assets/images/mainAvatar.png')}
-        />
+        <Image style={styles.avatarImage} source={{uri: user?.image}} />
 
         <View style={styles.avatarInfoContainer}>
           <Text style={styles.avatarName}>{user?.name}</Text>

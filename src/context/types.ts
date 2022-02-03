@@ -9,12 +9,17 @@ export interface UserType {
   id: string;
   name: string;
   level: UserLevelEnum;
+  email: string;
+  password: string;
+  image: string;
 }
 
 export interface AppContextType {
   user?: UserType;
   totalPoints: number;
-  login: (user: UserType) => void;
-  logout: () => void;
+  login: (username: string, password: string) => Promise<void>;
+  logout: (username: string, password: string) => void;
   setTotalPoints: (total: number) => void;
+  isLoading: boolean;
+  setIsLoading: (loading: boolean) => void;
 }

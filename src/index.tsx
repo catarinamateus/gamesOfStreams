@@ -60,22 +60,6 @@ const HomeTabs = () => {
 };
 
 const App = () => {
-  const {setTotalPoints, user} = useAppContext();
-  const {getUserPoints} = useDataClient();
-
-  React.useEffect(() => {
-    async function fetchData() {
-      if (user) {
-        const points = await getUserPoints(user.id);
-        if (typeof points === 'number') {
-          setTotalPoints(points);
-        }
-      }
-    }
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
-
   return (
     <Stack.Navigator>
       <Stack.Screen
