@@ -12,7 +12,6 @@ import LinearGradient from 'react-native-linear-gradient';
 import {useNavigation} from '@react-navigation/core';
 
 import {RootStackParamList} from '../..';
-import lastWatchedData from '../../../lastWatchedData.json';
 import {useAppContext} from '../../context';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {HomeStyles} from './styles/index';
@@ -49,14 +48,14 @@ const Home = () => {
             Click in one of the last watched to start game
           </Text>
           <ScrollView horizontal>
-            {lastWatchedData.map((film, index) => (
+            {user?.lastWatched.map((film, index) => (
               <TouchableHighlight
                 key={index}
                 style={styles.imageContainer}
-                onPress={() => navigation.navigate('Game')}>
+                onPress={() => navigation.navigate('Game', {asset: film})}>
                 <Image
                   source={{
-                    uri: film.image,
+                    uri: film.images.still[0].url,
                   }}
                   style={styles.imageContainer}
                 />

@@ -8,11 +8,14 @@ import Settings from './screens/Settings';
 import Games from './screens/Games';
 import {Theme, Colors} from './theme';
 import MaterialIcon from './components/MaterialIcon';
+import {Asset} from './hooks/useDataClient/types';
 
 export type RootStackParamList = {
   Dashboard: undefined;
   Catalogue: undefined;
-  Game: undefined;
+  Game: {
+    asset: Asset;
+  };
 };
 
 const Tab = createBottomTabNavigator();

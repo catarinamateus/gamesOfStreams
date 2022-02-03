@@ -1,6 +1,5 @@
 import {Asset, UseDataClientType, UserData, UserLeaderboardType} from './types';
 import axios from 'axios';
-import {UserType} from '../../context/types';
 
 const useDataClient = (): UseDataClientType => {
   const getUserPoints = async (userId: string): Promise<number | undefined> => {
@@ -22,9 +21,10 @@ const useDataClient = (): UseDataClientType => {
   };
 
   const getLastWatched = async (
-    user: UserType,
+    username: string,
+    password: string,
   ): Promise<Asset[] | undefined> => {
-    const endpoint = `http://3.71.13.88:3000/users/788638771/lastwatched?username=${user.email}&password=${user.password}`;
+    const endpoint = `http://3.71.13.88:3000/users/788638771/lastwatched?username=${username}&password=${password}`;
 
     const response = await axios({url: endpoint, method: 'get'});
 

@@ -1,20 +1,38 @@
 import React from 'react';
 
-import {Button, SafeAreaView, Text, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Button,
+  ImageBackground,
+  SafeAreaView,
+  Text,
+  View,
+} from 'react-native';
 
 import styles from './styles';
 
 import {game_one} from '../../data/games/questions';
 
-import {Theme} from '../../theme';
+import {Colors, Theme} from '../../theme';
 import {useAppContext} from '../../context';
+import {useRoute} from '@react-navigation/native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../..';
+
+type Props = NativeStackScreenProps<RootStackParamList, 'Game'>;
+
+type GameScreenRouteProp = Props['route'];
 
 const Games = (): JSX.Element => {
   const [startCount, setStartCount] = React.useState<number>(5);
   const [counter, setCounter] = React.useState<number>(30);
   const [questionsAnswered, setQuestionsAnswered] = React.useState<number>(0);
   const [correctAnswers, setCorrectAnswers] = React.useState<number>(0);
+  const [isImageLoading, setImageLoading] = React.useState(false);
   const {setTotalPoints, totalPoints} = useAppContext();
+  const route = useRoute<GameScreenRouteProp>();
+
+  const game = route.params.asset;
 
   const pointsToWin = 100;
 
@@ -85,6 +103,16 @@ const Games = (): JSX.Element => {
   const renderCountDown = (): JSX.Element => {
     return (
       <View style={styles.main}>
+        <ImageBackground
+          source={{uri: game.images.poster[0].url}}
+          resizeMode="contain"
+          style={styles.image}
+          onLoadStart={() => setImageLoading(true)}
+          onLoad={() => setImageLoading(false)}>
+          {isImageLoading && (
+            <ActivityIndicator size={'large'} color={Colors.yellow} />
+          )}
+        </ImageBackground>
         <Text style={styles.counterText}>{startCount}</Text>
         <Text style={styles.startText}>Get ready!</Text>
         <Text style={styles.startText}>

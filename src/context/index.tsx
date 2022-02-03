@@ -1,5 +1,5 @@
 import React, {ReactNode} from 'react';
-import {mockedUser} from '../data/mocks';
+import {lastWatchedMock, mockedUser} from '../data/mocks';
 import useDataClient from '../hooks/useDataClient';
 import {AppContextType, UserLevelEnum, UserType} from './types';
 
@@ -20,12 +20,13 @@ export const AppContextProvider = ({children}: {children: ReactNode}) => {
   const [totalPoints, setTotalPoints] = React.useState<number>(0);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
-  const {getUserDetails, getUserPoints} = useDataClient();
+  const {getUserDetails, getUserPoints, getLastWatched} = useDataClient();
 
   const login = async (username: string, password: string) => {
     setIsLoading(true);
     const userData = await getUserDetails(username, password);
     const points = await getUserPoints('788638771');
+    const lastWatched = await getLastWatched(username, password);
 
     if (userData) {
       setUser({
@@ -35,7 +36,7 @@ export const AppContextProvider = ({children}: {children: ReactNode}) => {
         email: userData.email,
         password, //never do this, only for demo :)
         image: userData.profile.image.images.avatar[0].url,
-        lastWatched: [],
+        lastWatched: lastWatched ? lastWatched : lastWatchedMock,
       });
     } else {
       //fallback in case api fails during demo

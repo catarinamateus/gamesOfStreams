@@ -1,5 +1,3 @@
-import {UserType} from '../../context/types';
-
 export interface UserLeaderboardType {
   userDetails: {
     id: string;
@@ -71,7 +69,10 @@ export interface UserData {
 export interface UseDataClientType {
   getUserPoints: (userId: string) => Promise<number | undefined>;
   getLeaderBoard: () => Promise<UserLeaderboardType[] | undefined>;
-  getLastWatched: (user: UserType) => Promise<Asset[] | undefined>;
+  getLastWatched: (
+    username: string,
+    password: string,
+  ) => Promise<Asset[] | undefined>;
   getUserDetails: (
     username: string,
     password: string,
