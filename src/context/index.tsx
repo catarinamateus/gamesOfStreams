@@ -11,6 +11,7 @@ const defaultContext: AppContextType = {
   setTotalPoints: () => undefined,
   isLoading: false,
   setIsLoading: () => undefined,
+  gameCompleted: () => undefined,
 };
 
 const AppContext = React.createContext(defaultContext);
@@ -65,6 +66,21 @@ export const AppContextProvider = ({children}: {children: ReactNode}) => {
     setTotalPoints(total);
   };
 
+  const gameCompleted = (assetId: string) => {
+    setUser(usr => {
+      if (!usr) {
+        return usr;
+      }
+      const updatedLastWatched = usr?.lastWatched.filter(
+        item => item.id !== assetId,
+      );
+      return {
+        ...usr,
+        lastWatched: updatedLastWatched,
+      };
+    });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -75,6 +91,7 @@ export const AppContextProvider = ({children}: {children: ReactNode}) => {
         setTotalPoints: setPoints,
         isLoading,
         setIsLoading,
+        gameCompleted,
       }}>
       {children}
     </AppContext.Provider>

@@ -32,7 +32,7 @@ const Games = (): JSX.Element => {
   const [questionsAnswered, setQuestionsAnswered] = React.useState<number>(0);
   const [correctAnswers, setCorrectAnswers] = React.useState<number>(0);
   const [isImageLoading, setImageLoading] = React.useState(false);
-  const {setTotalPoints, totalPoints} = useAppContext();
+  const {setTotalPoints, totalPoints, gameCompleted} = useAppContext();
   const route = useRoute<GameScreenRouteProp>();
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
@@ -86,6 +86,7 @@ const Games = (): JSX.Element => {
   React.useEffect(() => {
     if (correctAnswers === totalQuestions) {
       setTotalPoints(totalPoints + pointsToWin);
+      gameCompleted(game.id);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [correctAnswers]);

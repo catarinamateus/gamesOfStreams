@@ -48,7 +48,7 @@ const Home = () => {
         </View>
 
         <View style={styles.sectionContainer}>
-          <Text style={styles.sectionTitle}>Recently Watched:</Text>
+          <Text style={styles.sectionTitle}>New games available:</Text>
           <ScrollView
             style={styles.horizontalScroll}
             horizontal

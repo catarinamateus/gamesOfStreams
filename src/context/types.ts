@@ -26,4 +26,5 @@ export interface AppContextType {
   setTotalPoints: (total: number) => void;
   isLoading: boolean;
   setIsLoading: (loading: boolean) => void;
+  gameCompleted: (assetId: string) => void;
 }
