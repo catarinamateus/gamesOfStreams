@@ -7,8 +7,6 @@ import Catalogue from './screens/Catalogue';
 import Settings from './screens/Settings';
 import Games from './screens/Games';
 import {Theme, Colors} from './theme';
-import {useAppContext} from './context';
-import useDataClient from './hooks/useDataClient';
 import MaterialIcon from './components/MaterialIcon';
 
 export type RootStackParamList = {
