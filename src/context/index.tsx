@@ -35,6 +35,7 @@ export const AppContextProvider = ({children}: {children: ReactNode}) => {
         email: userData.email,
         password, //never do this, only for demo :)
         image: userData.profile.image.images.avatar[0].url,
+        lastWatched: [],
       });
     } else {
       //fallback in case api fails during demo

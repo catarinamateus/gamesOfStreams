@@ -1,3 +1,5 @@
+import {Asset} from '../hooks/useDataClient/types';
+
 export enum UserLevelEnum {
   Initial = 'Initial',
   Medium = 'Medium',
@@ -12,6 +14,7 @@ export interface UserType {
   email: string;
   password: string;
   image: string;
+  lastWatched: Asset[];
 }
 
 export interface AppContextType {

@@ -35,7 +35,7 @@ const useDataClient = (): UseDataClientType => {
     username: string,
     password: string,
   ): Promise<UserData | undefined> => {
-    const endpoint = `http://3.71.13.88:3000/users/login?username=${username}&password=${password}`;
+    const endpoint = `http://3.71.13.88:3000/users/detail?username=${username}&password=${password}`;
 
     const response = await axios({url: endpoint, method: 'get'});
 
