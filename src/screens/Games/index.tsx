@@ -3,10 +3,10 @@ import React from 'react';
 import {
   ActivityIndicator,
   Button,
-  ImageBackground,
   SafeAreaView,
   Text,
   View,
+  ImageBackground,
 } from 'react-native';
 
 import styles from './styles';
@@ -16,8 +16,11 @@ import {game_one} from '../../data/games/questions';
 import {Colors, Theme} from '../../theme';
 import {useAppContext} from '../../context';
 import {useRoute} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/core';
+
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../..';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Game'>;
 
@@ -31,6 +34,7 @@ const Games = (): JSX.Element => {
   const [isImageLoading, setImageLoading] = React.useState(false);
   const {setTotalPoints, totalPoints} = useAppContext();
   const route = useRoute<GameScreenRouteProp>();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   const game = route.params.asset;
 
@@ -141,9 +145,17 @@ const Games = (): JSX.Element => {
   const renderResults = (): JSX.Element => {
     if (correctAnswers === totalQuestions) {
       return (
-        <Text style={styles.questionText}>
-          Congratulations! You won {pointsToWin} points!
-        </Text>
+        <ImageBackground
+          source={require('../../assets/images/confetti.png')}
+          style={{flex: 1}}>
+          <Text style={styles.questionText}>Congratulations!</Text>
+          <Text style={styles.questionText}>You won {pointsToWin} points!</Text>
+          <Button
+            title={'Back to dashboard'}
+            onPress={() => navigation.goBack()}
+            color={Theme.text}
+          />
+        </ImageBackground>
       );
     } else {
       return (
