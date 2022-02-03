@@ -1,25 +1,29 @@
-import React, {useState, useEffect} from 'react';
-import {ScrollView, StyleSheet, Text} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {
+    ScrollView,
+    StyleSheet,
+} from 'react-native';
 import useDataClient from '../../hooks/useDataClient';
 
 import RankUserItem from '../../components/RankUserItem';
-import {UserLeaderboardType} from '../../hooks/useDataClient/types';
+import { UserLeaderboardType } from '../../hooks/useDataClient/types';
+import { mockedRanking } from '../../data/mocks';
 
 const Rankings = () => {
   const {getLeaderBoard} = useDataClient();
   const [rankingData, setRankingData] = useState<UserLeaderboardType[]>([]);
 
   const getLeaderData = async () => {
-    try {
-      const data = await getLeaderBoard();
-      const orderedData =
-        data && data.sort((a, b) => b.totalPoints - a.totalPoints);
-      orderedData && setRankingData(orderedData);
-      return data;
-    } catch (err) {
-      console.log(err);
-    }
-  };
+      try {
+          const data = await getLeaderBoard()
+          const orderedData = data && data.sort((a, b) => b.totalPoints - a.totalPoints);
+          orderedData && setRankingData(orderedData)
+          return data
+      } catch (err) {
+          setRankingData(mockedRanking.sort((a, b) => b.totalPoints - a.totalPoints))
+          console.log(err)
+      }
+  }
 
   useEffect(() => {
     getLeaderData();
@@ -32,7 +36,7 @@ const Rankings = () => {
           user.userDetails && (
             <RankUserItem
               displayName={user.userDetails.displayName}
-              avatarImage={user.userDetails.avatarImage}
+              avatarImage={'https://i.pravatar.cc/300'}
               totalTimeWatched={user.totalTimeWatched}
               totalPoints={user.totalPoints}
             />

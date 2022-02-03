@@ -1,5 +1,5 @@
 import {UserLevelEnum, UserType} from '../../context/types';
-import {Asset} from '../../hooks/useDataClient/types';
+import {Asset, UserLeaderboardType} from '../../hooks/useDataClient/types';
 
 export const lastWatchedMock: Asset[] = [
   {
@@ -161,3 +161,95 @@ export const mockedUser: UserType = {
     'https://cdn.backstage-api.com?key=backstage-cms-production-uploads/250x250/5e0ad1b0-515e-11e9-a7ed-371ac744bd33/profile-images/img/5c55a618-e55a-4c68-85ed-55afa4b8e2fb-image%201@2x.png',
   lastWatched: lastWatchedMock,
 };
+
+export const mockedRanking: UserLeaderboardType[] = [
+  {
+    userDetails: {
+      id: '1',
+      email: ' ',
+      displayName: 'Profile Name',
+      firstName: ' ',
+      lastName: ' ',
+      currency: ' ',
+      locale: ' ',
+      country: ' ',
+      pending: false,
+      age: 0,
+      avatarImage: 'https://i.pravatar.cc/300',
+    },
+    lastEventTimeStamps: 0,
+    totalTimeWatched: 1350,
+    totalPoints: 750,
+  },
+  {
+    userDetails: {
+      id: '1',
+      email: ' ',
+      displayName: 'Profile Name',
+      firstName: ' ',
+      lastName: ' ',
+      currency: ' ',
+      locale: ' ',
+      country: ' ',
+      pending: false,
+      age: 0,
+      avatarImage: 'https://i.pravatar.cc/300',
+    },
+    lastEventTimeStamps: 0,
+    totalTimeWatched: 2389,
+    totalPoints: 1380,
+  },
+  {
+    userDetails: {
+      id: '1',
+      email: ' ',
+      displayName: 'Profile Name',
+      firstName: ' ',
+      lastName: ' ',
+      currency: ' ',
+      locale: ' ',
+      country: ' ',
+      pending: false,
+      age: 0,
+      avatarImage: 'https://i.pravatar.cc/300',
+    },
+    lastEventTimeStamps: 0,
+    totalTimeWatched: 2100,
+    totalPoints: 890,
+  },
+  {
+    userDetails: {
+      id: '1',
+      email: ' ',
+      displayName: 'Profile Name',
+      firstName: ' ',
+      lastName: ' ',
+      currency: ' ',
+      locale: ' ',
+      country: ' ',
+      pending: false,
+      age: 0,
+      avatarImage: 'https://i.pravatar.cc/300',
+    },
+    lastEventTimeStamps: 0,
+    totalTimeWatched: 2780,
+    totalPoints: 980,
+  },{
+    userDetails: {
+      id: '1',
+      email: ' ',
+      displayName: 'Profile Name',
+      firstName: ' ',
+      lastName: ' ',
+      currency: ' ',
+      locale: ' ',
+      country: ' ',
+      pending: false,
+      age: 0,
+      avatarImage: 'https://i.pravatar.cc/300',
+    },
+    lastEventTimeStamps: 0,
+    totalTimeWatched: 3500,
+    totalPoints: 1500,
+  },
+]
